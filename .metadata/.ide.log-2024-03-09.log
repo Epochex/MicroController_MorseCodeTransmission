@@ -1,0 +1,19 @@
+2024-03-10 00:15:11,235 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,713x474,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2024-03-10 00:15:23,466 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,530 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,531 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,531 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,531 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,531 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,532 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,532 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,532 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,532 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,532 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,533 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,533 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,533 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,533 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:23,592 [INFO] ADCParametersView:116 -                Rank 1 : false
+2024-03-10 00:15:31,199 [INFO] Gpio:277 - dependency for GPIO [ADC1, RCC, SYS, USART2]
+2024-03-10 01:11:21,475 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,2,28,678x1047,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
