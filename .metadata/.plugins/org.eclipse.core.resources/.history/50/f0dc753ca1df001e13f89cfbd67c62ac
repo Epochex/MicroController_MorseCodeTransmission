@@ -78,7 +78,7 @@ int main(void)
   {
 	  //////////////////////////////////////////////////////////
 	  //section ver1.2
-	  MorseCodeString("HELLOCYU");  // 发送字符串
+	  MorseCodeString("HELLO CYU");  // 发送字符串
 	  HAL_Delay(3000); // 消息发送完毕后等待3秒
 	  //////////////////////////////////////////////////////////
 	  //section Ver1.1

@@ -44,41 +44,25 @@ void MorseCodeString(const char *str) {
         MorseCodeChar(toupper(str[i]));  // 将字符转换为大写并发送
     }
 }
-
-void dot(void) {
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_SET); // 开启蜂鸣器
-    HAL_Delay(DOT_LENGTH); // 点的持续时间
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_RESET); // 关闭蜂鸣器
-    HAL_Delay(DOT_LENGTH); // 点后的间隔，确保点和划之间有分隔
-}
-
-void dash(void) {
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_SET); // 开启蜂鸣器
-    HAL_Delay(DASH_LENGTH); // 划的持续时间
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_RESET); // 关闭蜂鸣器
-    HAL_Delay(DOT_LENGTH); // 划后的间隔，为了简化，这里也使用点的长度
-}
-
-void letterSpace(void) {
-    HAL_Delay(CHAR_GAP_MS); // 字母间的间隔
-}
-//////////////////////////////////////////////////////////
-//section ver1.2
 //////////////////////////////////////////////////////////
 //section ver1.1
 int main(void)
 {
-	HAL_Init();
-	SystemClock_Config();
-	MX_GPIO_Init();
-	MX_USART2_UART_Init();
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+
+  HAL_Init();
+
+  SystemClock_Config();
+
+  MX_GPIO_Init();
+  MX_USART2_UART_Init();
+  /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
 
   while (1)
   {
 	  //////////////////////////////////////////////////////////
 	  //section ver1.2
-	  MorseCodeString("HELLOCYU");  // 发送字符串
+	  MorseCodeString("HELLO CYU");  // 发送字符串
 	  HAL_Delay(3000); // 消息发送完毕后等待3秒
 	  //////////////////////////////////////////////////////////
 	  //section Ver1.1
