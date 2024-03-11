@@ -10,8 +10,7 @@ UART_HandleTypeDef huart2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
-//////////////////////////////////////////////////////////
-//section ver1.2
+
 void MorseCodeChar(char c) {
     const char *morseCode;
     // 转换大写字母到摩斯电码
@@ -44,8 +43,7 @@ void MorseCodeString(const char *str) {
         MorseCodeChar(toupper(str[i]));  // 将字符转换为大写并发送
     }
 }
-//////////////////////////////////////////////////////////
-//section ver1.1
+
 int main(void)
 {
 
@@ -60,12 +58,6 @@ int main(void)
 
   while (1)
   {
-	  //////////////////////////////////////////////////////////
-	  //section ver1.2
-	  MorseCodeString("HELLO CYU");  // 发送字符串
-	  HAL_Delay(3000); // 消息发送完毕后等待3秒
-	  //////////////////////////////////////////////////////////
-	  //section Ver1.1
 	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
 
 	  		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);

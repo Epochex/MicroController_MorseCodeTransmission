@@ -16,8 +16,8 @@ uint8_t Read_DO(void);
 
 #define MAX_MORSE_LENGTH 6  // 摩尔斯电码单个字符的最大长度
 #define CHAR_GAP_MS 1000    // 字符间隔时间（毫秒）
-#define DOT_LENGTH 50     // 点的长度（毫秒）
-#define DASH_LENGTH 150     // 划的长度（毫秒）
+#define DOT_LENGTH 200      // 点的长度（毫秒）
+#define DASH_LENGTH 500     // 划的长度（毫秒）
 
 volatile uint32_t signal_start_time = 0;
 volatile uint32_t signal_end_time = 0;

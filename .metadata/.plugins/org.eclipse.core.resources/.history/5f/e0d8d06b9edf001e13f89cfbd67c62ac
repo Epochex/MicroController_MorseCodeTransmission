@@ -10,42 +10,7 @@ UART_HandleTypeDef huart2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
-//////////////////////////////////////////////////////////
-//section ver1.2
-void MorseCodeChar(char c) {
-    const char *morseCode;
-    // 转换大写字母到摩斯电码
-    if (c >= 'A' && c <= 'Z') {
-        morseCode = MORSE_CODE_TABLE[c - 'A'];
-    }
-    // 转换数字到摩斯电码
-    else if (c >= '0' && c <= '9') {
-        morseCode = MORSE_CODE_TABLE[c - '0' + 26];
-    }
-    // 如果字符不是字母或数字，则跳过
-    else {
-        return;
-    }
 
-    // 输出摩斯电码
-    for (int i = 0; morseCode[i] != '\0'; i++) {
-        if (morseCode[i] == '.') {
-            dot();
-        } else if (morseCode[i] == '-') {
-            dash();
-        }
-        letterSpace();  // 每输出一个点或划后添加一个字符间隔
-    }
-    wordSpace();  // 每个字母后添加一个单词间隔，以区分字母
-}
-
-void MorseCodeString(const char *str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        MorseCodeChar(toupper(str[i]));  // 将字符转换为大写并发送
-    }
-}
-//////////////////////////////////////////////////////////
-//section ver1.1
 int main(void)
 {
 
@@ -60,12 +25,6 @@ int main(void)
 
   while (1)
   {
-	  //////////////////////////////////////////////////////////
-	  //section ver1.2
-	  MorseCodeString("HELLO CYU");  // 发送字符串
-	  HAL_Delay(3000); // 消息发送完毕后等待3秒
-	  //////////////////////////////////////////////////////////
-	  //section Ver1.1
 	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
 
 	  		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
