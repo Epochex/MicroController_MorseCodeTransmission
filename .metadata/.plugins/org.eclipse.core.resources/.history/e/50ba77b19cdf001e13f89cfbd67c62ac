@@ -1,87 +1,102 @@
-
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
 #define BUZZER_PIN GPIO_PIN_9
 #define BUZZER_PORT GPIOA
+/* USER CODE END PD */
 
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart2;
 
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
-//////////////////////////////////////////////////////////
-//section ver1.2
-void MorseCodeChar(char c) {
-    const char *morseCode;
-    // 转换大写字母到摩斯电码
-    if (c >= 'A' && c <= 'Z') {
-        morseCode = MORSE_CODE_TABLE[c - 'A'];
-    }
-    // 转换数字到摩斯电码
-    else if (c >= '0' && c <= '9') {
-        morseCode = MORSE_CODE_TABLE[c - '0' + 26];
-    }
-    // 如果字符不是字母或数字，则跳过
-    else {
-        return;
-    }
+/* USER CODE BEGIN PFP */
 
-    // 输出摩斯电码
-    for (int i = 0; morseCode[i] != '\0'; i++) {
-        if (morseCode[i] == '.') {
-            dot();
-        } else if (morseCode[i] == '-') {
-            dash();
-        }
-        letterSpace();  // 每输出一个点或划后添加一个字符间隔
-    }
-    wordSpace();  // 每个字母后添加一个单词间隔，以区分字母
-}
+/* USER CODE END PFP */
 
-void MorseCodeString(const char *str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        MorseCodeChar(toupper(str[i]));  // 将字符转换为大写并发送
-    }
-}
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
 
-void dot(void) {
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_SET); // 开启蜂鸣器
-    HAL_Delay(DOT_LENGTH); // 点的持续时间
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_RESET); // 关闭蜂鸣器
-    HAL_Delay(DOT_LENGTH); // 点后的间隔，确保点和划之间有分隔
-}
+/* USER CODE END 0 */
 
-void dash(void) {
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_SET); // 开启蜂鸣器
-    HAL_Delay(DASH_LENGTH); // 划的持续时间
-    HAL_GPIO_WritePin(BUZZER_PORT, BUZZER_PIN, GPIO_PIN_RESET); // 关闭蜂鸣器
-    HAL_Delay(DOT_LENGTH); // 划后的间隔，为了简化，这里也使用点的长度
-}
-
-void letterSpace(void) {
-    HAL_Delay(CHAR_GAP_MS); // 字母间的间隔
-}
-//////////////////////////////////////////////////////////
-//section ver1.2
-//////////////////////////////////////////////////////////
-//section ver1.1
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
 int main(void)
 {
-	HAL_Init();
-	SystemClock_Config();
-	MX_GPIO_Init();
-	MX_USART2_UART_Init();
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+  /* USER CODE BEGIN 1 */
 
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART2_UART_Init();
+  /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //////////////////////////////////////////////////////////
-	  //section ver1.2
-	  MorseCodeString("HELLOCYU");  // 发送字符串
-	  HAL_Delay(3000); // 消息发送完毕后等待3秒
-	  //////////////////////////////////////////////////////////
-	  //section Ver1.1
 	  if (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13)==0){
 
 	  		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
@@ -95,16 +110,23 @@ int main(void)
   /* USER CODE END 3 */
 }
 
-
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
+  /** Configure the main internal regulator output voltage
+  */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
 
-
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -168,7 +190,11 @@ static void MX_USART2_UART_Init(void)
 
 }
 
-
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
